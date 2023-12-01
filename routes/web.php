@@ -40,4 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('/publicaciones', PublicacionController::class);
 
     Route::get('/aumentar-like-publicación/{idPublicacion}/{idClase}', [PublicacionController::class, 'aumentarLikePublicacion'])->name("aumentarLikePublicacion");
+    Route::get('/descargar-archivo/{idPublicacion}', [PublicacionController::class, 'descargarArchivo'])->name("descargarArchivo");
+    Route::get('/canjear-codigo', [ClaseController::class, 'canjearCodigo'])->name("canjearCodigo");
+    Route::post('/realizar-inscripcion', [ClaseController::class, 'realizarInscripcion'])->name("realizarInscripcion");
 });

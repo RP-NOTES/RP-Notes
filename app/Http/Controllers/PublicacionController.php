@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Publicacion;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PublicacionController extends Controller
@@ -41,6 +43,7 @@ class PublicacionController extends Controller
         $publicacion->titulo = $request->titulo;
         $publicacion->contenido = $request->contenido;
         $publicacion->idClase = $request->idClase;
+        $publicacion->idUser = Auth::user()->id;
 
         if ($request->hasFile('image')) {
             $generatedImageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
@@ -98,5 +101,18 @@ class PublicacionController extends Controller
         $publicacion->save();
 
         return redirect()->route('clases.show', ['clase' => $idClase]);
+    }
+
+    public function descargarArchivo($idPublicacion)
+    {
+        $publicacion = Publicacion::find($idPublicacion);
+        $rutaArchivo = 'files/' . $publicacion->nombreArchivo;
+
+        if (Storage::exists($rutaArchivo)) {
+            return Storage::download($rutaArchivo);
+        } else {
+            // Manejo de error si el archivo no existe
+            return back()->with('error', 'El archivo no existe');
+        }
     }
 }

@@ -4,19 +4,19 @@
 
 @section('contenido')
     <div class="contenedor-formulario">
-        <h1>Registrar nueva clase</h1>
+        <h1>Canjear código</h1>
 
-        <form action="{{ route('clases.store') }}" method="POST">
+        <form action="{{ route('realizarInscripcion') }}" method="POST">
             @csrf
 
             <div class="contenedor-grupos-formulario">
                 <div class="grupo-formulario">
-                    <label for="">Nombre:</label>
-                    <input type="text" name="nombre">
+                    <label for="">Código:</label>
+                    <input type="text" name="codigo" value="{{ old('codigo') }}">
                 </div>
             </div>
 
-            <button type="submit" class="btn-submit">Registrar</button>
+            <button type="submit" class="btn-submit">Canjear</button>
         </form>
     </div>
 

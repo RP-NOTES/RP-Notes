@@ -21,8 +21,10 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unsignedBigInteger("idClase");
+            $table->unsignedBigInteger("idUser");
 
             $table->foreign("idClase")->references("id")->on("clases");
+            $table->foreign("idUser")->references("id")->on("users");
         });
     }
 

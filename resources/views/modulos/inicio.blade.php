@@ -5,8 +5,11 @@
 @section('contenido')
     <div class="barra-navegacion-inicio">
         <h1>Clases disponibles</h1>
-        <a class="btn-agregar">Canjear código <i class="fa-solid fa-hashtag"></i></a>
-        <a class="btn-agregar" href="{{ route('clases.create') }}">Crear nueva clase <i class="fa-solid fa-plus"></i></a>
+
+        <div class="contenedor-botones">
+            <a class="btn-agregar" href="{{ route('canjearCodigo') }}">Canjear código <i class="fa-solid fa-hashtag"></i></a>
+            <a class="btn-agregar" href="{{ route('clases.create') }}">Crear nueva clase <i class="fa-solid fa-plus"></i></a>
+        </div>
     </div>
 
     @if (count($inscripciones) > 0)
@@ -19,8 +22,12 @@
             @endforeach
         </div>
     @else
-        <p>Aún no tienes clases agregadas, porfavor canjea el código o crea una nueva clase</p>
+        <p style="margin-top: 30px">Aún no tienes clases agregadas, porfavor canjea el código o crea una nueva clase</p>
     @endif
+
+    <a class="logout-icon" href="{{ route('logout') }}">
+        <i class="fa-solid fa-right-from-bracket"></i>
+    </a>
 
     @if (session('success'))
         <script>

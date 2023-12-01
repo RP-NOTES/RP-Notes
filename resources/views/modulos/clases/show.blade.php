@@ -3,9 +3,14 @@
 @section('titulo', 'Registrar nueva clase')
 
 @section('contenido')
+    <a href="{{ route('inicio') }}" class="btn-regresar">
+        Regresar <i class="fa-solid fa-arrow-left"></i>
+    </a>
+
     <div class="contenedor-titulo-clase">
         <p>Clase</p>
         <h1 class="titulo-clase">{{ $clase->nombre }}</h1>
+        <h2>Codigo: {{ $clase->codigo }}</h2>
     </div>
 
     <div class="contenedor-nueva-publicacion">
@@ -53,12 +58,20 @@
                 @endif
 
                 @if ($publicacion->nombreArchivo)
-                    <img src="{{ asset('images/' . $publicacion->nombreImagen) }}" alt="Imagén publicacion" />
+                    <div class="contenedor-archivo">
+                        <p style="margin-bottom: 0px">Archivo adjunto</p>
+                        <p>{{ $publicacion->nombreArchivo }}</p>
+                        <a href="{{ route('descargarArchivo', ['idPublicacion' => $publicacion->id]) }}" class="btn-descargar">Descargar archivo <i class="fa-solid fa-download"></i></a>
+                    </div>
                 @endif
 
                 <a class="like" href="{{ route('aumentarLikePublicacion', ['idPublicacion' => $publicacion->id, 'idClase' => $clase->id]) }}">
                     {{ $publicacion->contadorLikes }} <i class="fa-regular fa-thumbs-up"></i>
                 </a>
+
+                <div class="footer-publicacion">
+                    <p>Publicado por: {{ $publicacion->user->name }}</p>
+                </div>
             </div>
         @empty
         @endforelse

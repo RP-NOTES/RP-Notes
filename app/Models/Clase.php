@@ -16,6 +16,6 @@ class Clase extends Model
 
     public function publicaciones()
     {
-        return $this->hasMany(Publicacion::class, 'idClase');
+        return $this->hasMany(Publicacion::class, 'idClase')->orderByDesc('contadorLikes');
     }
 }

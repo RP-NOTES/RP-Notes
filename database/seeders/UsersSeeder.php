@@ -16,7 +16,13 @@ class UsersSeeder extends Seeder
     {
         $user1 = new User();
         $user1->name = "Jesús Luvian";
-        $user1->email = "test@user.com";
+        $user1->email = "test@user1.com";
+        $user1->password = Hash::make("123");
+        $user1->save();
+
+        $user1 = new User();
+        $user1->name = "Test User";
+        $user1->email = "test@user2.com";
         $user1->password = Hash::make("123");
         $user1->save();
     }

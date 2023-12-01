@@ -10,4 +10,9 @@ class Publicacion extends Model
     use HasFactory;
 
     protected $table = "publicaciones";
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUser');
+    }
 }

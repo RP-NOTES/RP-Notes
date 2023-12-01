@@ -53,7 +53,8 @@ class ClaseController extends Controller
      */
     public function show(string $id)
     {
-        $clase = Clase::with('publicaciones')->find($id);
+        $clase = Clase::with('publicaciones.user')->find($id);
+
         return view('modulos.clases.show', ['clase' => $clase]);
     }
 
@@ -79,5 +80,36 @@ class ClaseController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function canjearCodigo()
+    {
+        return view('modulos.clases.canjearCodigo');
+    }
+
+    public function realizarInscripcion(Request $request)
+    {
+        $request->validate([
+            'codigo' => 'required'
+        ]);
+
+        $clase = Clase::where('codigo', $request->codigo)->first();
+
+        if ($clase) {
+            $existeInscripcion = Inscripcion::where('idUser', Auth::user()->id)->where('idClase', $clase->id)->exists();
+
+            if ($existeInscripcion) {
+                return redirect()->back()->withErrors("Ya te encuentras inscrito a la clase " . $clase->nombre)->withInput();
+            } else {
+                $inscripcion = new Inscripcion();
+                $inscripcion->idUser = Auth::user()->id;
+                $inscripcion->idClase = $clase->id;
+                $inscripcion->save();
+
+                return redirect()->route('inicio')->with('success', 'Te haz inscrito correctamente a ' . $clase->nombre);
+            }
+        } else {
+            return redirect()->back()->withErrors("No se encontro una clase con ese código")->withInput();
+        }
     }
 }
