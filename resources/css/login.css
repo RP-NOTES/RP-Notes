@@ -1,0 +1,103 @@
+@font-face {
+    font-family: Graphik-Medium;
+    src: url("../../public/fonts/GraphikMedium.otf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Graphik-Medium;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F6F1F1;
+}
+
+.card {
+    padding: 2rem 3rem;
+    background-color: white;
+    box-shadow: 0 2rem 3rem rgb(86, 86, 86);
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    border-radius: 1rem;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card img {
+    height: 8rem;
+    margin-bottom: 1rem;
+}
+
+.titulo-card {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.card:hover {
+    box-shadow: none;
+}
+
+.grupo-formulario {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.grupo-formulario label {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.grupo-formulario input {
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.grupo-formulario input:focus {
+    outline: none;
+    border-color: #6cb2eb;
+    box-shadow: 0 0 5px rgba(108, 178, 235, 0.5);
+}
+
+.card form {
+    width: 100%;
+}
+
+.boton-submit {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #0d6efd;
+    width: 100%;
+    color: white;
+    border: none;
+    transition: 1s;
+    font-size: 1.3rem;
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    -ms-transition: 1s;
+    -o-transition: 1s;
+}
+
+.boton-submit:hover {
+    box-shadow: inset 0em 0em 0em 10em rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
